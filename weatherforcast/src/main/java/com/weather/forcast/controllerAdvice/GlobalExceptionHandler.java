@@ -28,20 +28,24 @@ public class GlobalExceptionHandler {
 
   @ExceptionHandler
   public ResponseEntity<Map<String, String>> handle(Exception exception) {
-    // general exception
+    
     LOG.error(Constants.GENERIC_ERROR_MESSAGE, exception);
     
     Map<String, String> response =new HashMap<>();
     response.put("Time", new Date().toString());
     if(exception instanceof IllegalArgumentException) {
     	response.put(Constants.message, Constants.NOT_FOUND_JWT_TOKEN);
+    	response.put("Status", HttpStatus.BAD_REQUEST.toString());
     	
     }else if(exception instanceof ExpiredJwtException) {
     	response.put(Constants.message, Constants.JWT_TOKEN_EXPIRED);
+    	response.put("Status", HttpStatus.BAD_REQUEST.toString());
     }else if(exception instanceof UsernameNotFoundException || exception instanceof  BadCredentialsException) {
     	response.put(Constants.message, Constants.USER_NOT_FOUND);
+    	response.put("Status", HttpStatus.BAD_REQUEST.toString());
     }else {
     	response.put(Constants.message, Constants.GENERIC_ERROR_MESSAGE);
+    	response.put("Status", HttpStatus.BAD_REQUEST.toString());
     }
     	return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
   }
