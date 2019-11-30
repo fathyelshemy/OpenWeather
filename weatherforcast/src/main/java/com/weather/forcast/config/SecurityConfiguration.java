@@ -36,10 +36,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-//		http.authorizeRequests().antMatchers("/register", "/authenticate").permitAll().antMatchers("/weather/**")
-//				.access("hasRole('USER') or hasRole('ADMIN')").antMatchers("/note/view")
-//				.access("hasRole('USER') or hasRole('ADMIN')").antMatchers("/note/edit").access("hasRole('ADMIN')")
-//				.and().formLogin();
 		http.csrf().disable()
 		// dont authenticate this particular request
 		.authorizeRequests().antMatchers("/authenticate","register").permitAll().

@@ -24,4 +24,14 @@ public final class Constants {
 	public static final String DEGREE_BETWEEN_10_AND_15="you should wear heavy clothes, it's rain ";
 	public static final String DEGREE_BETWEEN_15_AND_20="it's fine for parking";
 	public static final String DEGREE_MORE_THAN_20="it's hot";
+	
+	public static final String NOT_FOUND_JWT_TOKEN="Unable to get JWT Token";
+	public static final String JWT_TOKEN_EXPIRED="JWT Token has expired";
+	public static final String BEARER_ERROR="JWT Token does not begin with Bearer String";
+	public static final String Authorization="Authorization";
+	public static final String message="message";
+	public static final String GENERIC_ERROR_MESSAGE="Unable to process this request.";
+	public static final String USER_NOT_FOUND="your mail is not found";
+	
+	
 }

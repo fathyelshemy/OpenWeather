@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -87,7 +88,7 @@ public class WeatherController {
     @PreAuthorize("hasRole('ADMIN')")
 	@PostMapping(path = "/editNote", produces = "application/json")
 	@ResponseBody
-	public ResponseEntity<?> updateWeatherNote(WeatherNote weatherNote){
+	public ResponseEntity<?> updateWeatherNote(@RequestBody WeatherNote weatherNote){
 		logger.info(Constants.CLASS_NAME + this.getClass().getName() + Constants.METHOD_NAME + new Object(){ }.getClass().getEnclosingMethod().getName());
 
 		WeatherNote updateNote=weatherNoteService.updateWeatherNote(weatherNote);

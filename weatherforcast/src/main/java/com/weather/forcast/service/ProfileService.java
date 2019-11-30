@@ -24,6 +24,8 @@ public class ProfileService {
 			emp.setId(1);
 		else
 			emp.setId(prevEmp.getId()+1);
+		
+		emp.setRole("ROLE_USER");
 		empRepo.save(emp);
 		logger.info(Constants.END_METHOD);
 		return true;

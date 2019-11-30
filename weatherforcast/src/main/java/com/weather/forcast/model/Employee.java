@@ -13,11 +13,11 @@ import javax.validation.constraints.Min;
 import io.swagger.annotations.ApiModelProperty;
 
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"email"}))
+//@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"email"}))
 public class Employee {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@ApiModelProperty(hidden = true)
 	private long id;
 	
@@ -26,7 +26,7 @@ public class Employee {
 	private String username;
 	
 	@Email
-	@Column(nullable = false)
+	@Column(nullable = false,unique = true)
 	@ApiModelProperty(required = true,allowEmptyValue = false,example = "example@mail.com")
 	private String email;
 	
