@@ -34,7 +34,7 @@ public class JwtAuthenticationController {
 	@Autowired
 	private EmployeeDetailsService userDetailsService;
 	
-	@ApiOperation(nickname = "authenticate",notes = "recieve username and password and return JWT Token",produces = "application/json")
+	@ApiOperation(nickname = "authenticate",notes = "recieve username and password and return JWT Token",produces = "application/json", value = "authenticate")
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
 		authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
