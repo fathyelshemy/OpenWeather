@@ -26,21 +26,21 @@ public class GlobalExceptionHandler {
   private static final Logger LOG = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
 
-  @ExceptionHandler
+  @ExceptionHandler(Throwable.class)
   public ResponseEntity<Map<String, String>> handle(Exception exception) {
     
     LOG.error(Constants.GENERIC_ERROR_MESSAGE, exception);
     
     Map<String, String> response =new HashMap<>();
     response.put("Time", new Date().toString());
-    if(exception instanceof IllegalArgumentException) {
+    if(exception.getCause() instanceof IllegalArgumentException) {
     	response.put(Constants.message, Constants.NOT_FOUND_JWT_TOKEN);
     	response.put("Status", HttpStatus.BAD_REQUEST.toString());
     	
-    }else if(exception instanceof ExpiredJwtException) {
+    }else if(exception.getCause() instanceof ExpiredJwtException) {
     	response.put(Constants.message, Constants.JWT_TOKEN_EXPIRED);
     	response.put("Status", HttpStatus.BAD_REQUEST.toString());
-    }else if(exception instanceof UsernameNotFoundException || exception instanceof  BadCredentialsException) {
+    }else if(exception.getCause() instanceof UsernameNotFoundException || exception.getCause() instanceof  BadCredentialsException) {
     	response.put(Constants.message, Constants.USER_NOT_FOUND);
     	response.put("Status", HttpStatus.BAD_REQUEST.toString());
     }else {
