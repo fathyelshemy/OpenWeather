@@ -34,7 +34,8 @@ public final class Constants {
 	public static final String message="message";
 	public static final String GENERIC_ERROR_MESSAGE="Unable to process this request.";
 	public static final String USER_NOT_FOUND="your mail is not found";
-	
+	public static final String ACCESS_DENIED="Access denied";
+	public static final String JSON_PARSER="enter you data correctly ";
 	public static final String INCOMING_REQUEST="========================= internal inComing request at :"+new Date().toGMTString()+"====================";
 	public static final String OUTGOING_RESPONSE="========================= internal outGoing response at :"+new Date().toGMTString()+"====================";
 	

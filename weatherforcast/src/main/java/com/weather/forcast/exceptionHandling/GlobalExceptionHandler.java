@@ -1,4 +1,4 @@
-package com.weather.forcast.controllerAdvice;
+package com.weather.forcast.exceptionHandling;
 
 import java.util.AbstractMap;
 import java.util.Date;
@@ -9,6 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
@@ -42,6 +44,12 @@ public class GlobalExceptionHandler {
     	response.put("Status", HttpStatus.BAD_REQUEST.toString());
     }else if(exception.getCause() instanceof UsernameNotFoundException || exception.getCause() instanceof  BadCredentialsException) {
     	response.put(Constants.message, Constants.USER_NOT_FOUND);
+    	response.put("Status", HttpStatus.BAD_REQUEST.toString());
+    }else if(exception instanceof AccessDeniedException){
+    	response.put(Constants.message, Constants.ACCESS_DENIED);
+    	response.put("Status", HttpStatus.FORBIDDEN.toString());
+    }else if(exception instanceof HttpMessageNotReadableException) {
+    	response.put(Constants.message, Constants.JSON_PARSER);
     	response.put("Status", HttpStatus.BAD_REQUEST.toString());
     }else {
     	response.put(Constants.message, Constants.GENERIC_ERROR_MESSAGE);
